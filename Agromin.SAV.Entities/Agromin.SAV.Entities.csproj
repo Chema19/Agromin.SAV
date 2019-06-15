@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{91DCBF32-EC2C-4942-A8E1-4F8778F030C1}</ProjectGuid>
+    <ProjectGuid>{B76F94B0-906E-47FB-BC35-562E0F3EA539}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agromin.SAV.Helpers</RootNamespace>
-    <AssemblyName>Agromin.SAV.Helpers</AssemblyName>
+    <RootNamespace>Agromin.SAV.Entities</RootNamespace>
+    <AssemblyName>Agromin.SAV.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -84,7 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ConstantHelpers.cs" />
+    <Compile Include="Entities\CustomerEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

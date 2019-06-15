@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agromin.SAV.Data", "Agromin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agromin.SAV.Helpers", "Agromin.SAV.Helpers\Agromin.SAV.Helpers.csproj", "{91DCBF32-EC2C-4942-A8E1-4F8778F030C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agromin.SAV.Entities", "Agromin.SAV.Entities\Agromin.SAV.Entities.csproj", "{B76F94B0-906E-47FB-BC35-562E0F3EA539}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{91DCBF32-EC2C-4942-A8E1-4F8778F030C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91DCBF32-EC2C-4942-A8E1-4F8778F030C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91DCBF32-EC2C-4942-A8E1-4F8778F030C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76F94B0-906E-47FB-BC35-562E0F3EA539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76F94B0-906E-47FB-BC35-562E0F3EA539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76F94B0-906E-47FB-BC35-562E0F3EA539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76F94B0-906E-47FB-BC35-562E0F3EA539}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

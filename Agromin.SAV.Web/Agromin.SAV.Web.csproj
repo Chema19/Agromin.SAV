@@ -218,6 +218,20 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Agromin.SAV.Data\Agromin.SAV.Data.csproj">
+      <Project>{19332d48-256e-4959-bfe4-7e4717b4cd95}</Project>
+      <Name>Agromin.SAV.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agromin.SAV.Entities\Agromin.SAV.Entities.csproj">
+      <Project>{b76f94b0-906e-47fb-bc35-562e0f3ea539}</Project>
+      <Name>Agromin.SAV.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agromin.SAV.Helpers\Agromin.SAV.Helpers.csproj">
+      <Project>{91dcbf32-ec2c-4942-a8e1-4f8778f030c1}</Project>
+      <Name>Agromin.SAV.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
