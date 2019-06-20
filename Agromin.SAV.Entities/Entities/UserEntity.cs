@@ -22,5 +22,7 @@ namespace Agromin.SAV.Entities.Entities
         public String Master { set; get; }
         public Int32? LocalId { set; get; }
         public Int32? DistrictId { set; get; }
+        public String Sex { set; get; }
+        public String Phone { set; get; }
     }
 }

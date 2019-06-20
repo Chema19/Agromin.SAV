@@ -59,20 +59,23 @@ namespace Agromin.SAV.Api.Controllers
         {
             try
             {
+                var dniExiste = context.User.FirstOrDefault(x => x.Identity_Document == model.Identity_Document);
+
                 if (model.Identity_Document.Length != 8)
                 {
                     response.Data = "failed";
                     response.Error = false;
                     response.Message = "Document need 8 characteres";
-                    return Ok(response);
+                    return Content(HttpStatusCode.Conflict, response);
                 }
                 if (!email_bien_escrito(model.Email))
                 {
                     response.Data = "failed";
                     response.Error = false;
-                    response.Message = "wrong Email";
-                    return Ok(response);
+                    response.Message = "Document need 8 characteres";
+                    return Content(HttpStatusCode.Conflict, response);
                 }
+
 
                 using (var ts = new TransactionScope())
                 {
@@ -80,20 +83,32 @@ namespace Agromin.SAV.Api.Controllers
                     User user = new User();
                     if (!model.UserId.HasValue)
                     {
+                        if (dniExiste != null)
+                        {
+                            response.Data = "failed";
+                            response.Error = false;
+                            response.Message = "Document Identity is necesary";
+                            return Content(HttpStatusCode.Conflict, response);
+                        }
+
                         context.User.Add(user);
                         user.Status = ConstantHelpers.ESTADO.ACTIVO;
                         user.Creation_date = DateTime.Now;
                         user.Update_date = DateTime.Now;
                     }
 
-                    user.Credential = model.Credential;
-                    user.Password = model.Password;
                     user.Names = model.Names;
                     user.Last_Names = model.Last_Names;
+                    user.Credential = model.Credential;
+                    user.Password = model.Password;
+                    user.Sex = model.Sex;
                     user.Identity_Document = model.Identity_Document;
                     user.Email = model.Email;
                     user.Birthdate = model.Birthdate;
+                    user.LocalId = model.LocalId.Value;
                     user.DistrictId = model.DistrictId;
+                    user.Master = "";
+                    user.Phone = model.Phone;
 
                     context.SaveChanges();
                     ts.Complete();
@@ -115,20 +130,23 @@ namespace Agromin.SAV.Api.Controllers
         {
             try
             {
+                var dniExiste = context.User.FirstOrDefault(x => x.Identity_Document == model.Identity_Document);
+
                 if (model.Identity_Document.Length != 8)
                 {
                     response.Data = "failed";
                     response.Error = false;
                     response.Message = "Document need 8 characteres";
-                    return Ok(response);
+                    return Content(HttpStatusCode.Conflict, response);
                 }
                 if (!email_bien_escrito(model.Email))
                 {
                     response.Data = "failed";
                     response.Error = false;
-                    response.Message = "wrong Email";
-                    return Ok(response);
+                    response.Message = "Document need 8 characteres";
+                    return Content(HttpStatusCode.Conflict, response);
                 }
+
 
                 using (var ts = new TransactionScope())
                 {
@@ -142,12 +160,16 @@ namespace Agromin.SAV.Api.Controllers
 
                     user.Names = model.Names;
                     user.Last_Names = model.Last_Names;
+                    user.Credential = model.Credential;
+                    user.Password = model.Password;
+                    user.Sex = model.Sex;
                     user.Identity_Document = model.Identity_Document;
                     user.Email = model.Email;
                     user.Birthdate = model.Birthdate;
+                    user.LocalId = model.LocalId.Value;
                     user.DistrictId = model.DistrictId;
-                    user.Credential = model.Credential;
-                    user.Password = model.Password;
+                    user.Master = "";
+                    user.Phone = model.Phone;
 
                     context.SaveChanges();
                     ts.Complete();
