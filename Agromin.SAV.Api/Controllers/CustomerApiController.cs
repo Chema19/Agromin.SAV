@@ -108,8 +108,8 @@ namespace Agromin.SAV.Api.Controllers
         }
 
         [HttpPut]
-        [Route("customers/{customerid}")]
-        public IHttpActionResult EditCustomer(Int32? CustomerId, CustomerEntity model)
+        [Route("customers")]
+        public IHttpActionResult EditCustomer(CustomerEntity model)
         {
             try
             {
@@ -132,9 +132,9 @@ namespace Agromin.SAV.Api.Controllers
                 {
 
                     Customer customer = new Customer();
-                    if (CustomerId.HasValue)
+                    if (model.CustomerId.HasValue)
                     {
-                        customer = context.Customer.FirstOrDefault(x => x.CustomerId == CustomerId);
+                        customer = context.Customer.FirstOrDefault(x => x.CustomerId == model.CustomerId);
                         customer.Update_Date = DateTime.Now;
                     }
 
