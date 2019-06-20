@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Agromin.SAV.Entities.Entities
 {
-    public class EntryExitProducts
+    public class EntryExitProductEntity
     {
         public Int32? EntryExitProductId { set; get; }
         public Decimal? Amount { set; get; }
