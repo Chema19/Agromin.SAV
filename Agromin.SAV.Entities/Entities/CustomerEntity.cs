@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Agromin.SAV.Entities.Entities
 {
-    class CustomerEntity
+    public class CustomerEntity
     {
         public Int32? CustomerId { set; get; }
         public String Names { set; get; }
