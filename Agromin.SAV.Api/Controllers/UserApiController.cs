@@ -1,39 +1,41 @@
-﻿using System;
+﻿using Agromin.SAV.Data;
+using Agromin.SAV.Entities.Entities;
+using Agromin.SAV.Helpers.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Transactions;
 using System.Web.Http;
-using Agromin.SAV.Data;
-using Agromin.SAV.Helpers.Helpers;
-using Agromin.SAV.Entities.Entities;
-using System.Text.RegularExpressions;
 
 namespace Agromin.SAV.Api.Controllers
 {
     [RoutePrefix("SAV")]
-    public class CustomerApiController : BaseApiController
+    public class UserApiController : BaseApiController
     {
         [HttpGet]
-        [Route("customers")]
-        public IHttpActionResult ListCustomers()
+        [Route("users")]
+        public IHttpActionResult ListUsers()
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Customer.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    response.Data = context.User.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
                     {
-                        CustomerId = x.CustomerId,
+                        UserId = x.UserId,
                         Names = x.Names,
+                        Credential = x.Credential,
+                        Password = x.Password,
                         Last_Names = x.Last_Names,
                         Sex = x.Sex,
                         Identity_Document = x.Identity_Document,
                         Email = x.Email,
                         Birthdate = x.Birthdate,
-                        Creation_Date = x.Creation_Date,
-                        Update_Date = x.Update_Date,
+                        Creation_date = x.Creation_date,
+                        Update_date = x.Update_date,
                         Status = x.Status,
                         DistrictId = x.DistrictId,
                         Phone = x.Phone
@@ -52,8 +54,8 @@ namespace Agromin.SAV.Api.Controllers
         }
 
         [HttpPost]
-        [Route("customers")]
-        public IHttpActionResult AddCustomer(CustomerEntity model)
+        [Route("users")]
+        public IHttpActionResult AddUser(UserEntity model)
         {
             try
             {
@@ -75,23 +77,23 @@ namespace Agromin.SAV.Api.Controllers
                 using (var ts = new TransactionScope())
                 {
 
-                    Customer customer = new Customer();
-                    if (!model.CustomerId.HasValue)
+                    User user = new User();
+                    if (!model.UserId.HasValue)
                     {
-                        context.Customer.Add(customer);
-                        customer.Status = ConstantHelpers.ESTADO.ACTIVO;
-                        customer.Creation_Date = DateTime.Now;
-                        customer.Update_Date = DateTime.Now;
+                        context.User.Add(user);
+                        user.Status = ConstantHelpers.ESTADO.ACTIVO;
+                        user.Creation_date = DateTime.Now;
+                        user.Update_date = DateTime.Now;
                     }
 
-                    customer.Names = model.Names;
-                    customer.Last_Names = model.Last_Names;
-                    customer.Sex = model.Sex;
-                    customer.Identity_Document = model.Identity_Document;
-                    customer.Email = model.Email;
-                    customer.Birthdate = model.Birthdate;
-                    customer.DistrictId = model.DistrictId;
-                    customer.Phone = model.Phone;
+                    user.Credential = model.Credential;
+                    user.Password = model.Password;
+                    user.Names = model.Names;
+                    user.Last_Names = model.Last_Names;
+                    user.Identity_Document = model.Identity_Document;
+                    user.Email = model.Email;
+                    user.Birthdate = model.Birthdate;
+                    user.DistrictId = model.DistrictId;
 
                     context.SaveChanges();
                     ts.Complete();
@@ -108,8 +110,8 @@ namespace Agromin.SAV.Api.Controllers
         }
 
         [HttpPut]
-        [Route("customers")]
-        public IHttpActionResult EditCustomer(CustomerEntity model)
+        [Route("users")]
+        public IHttpActionResult EditUser(UserEntity model)
         {
             try
             {
@@ -131,21 +133,21 @@ namespace Agromin.SAV.Api.Controllers
                 using (var ts = new TransactionScope())
                 {
 
-                    Customer customer = new Customer();
-                    if (model.CustomerId.HasValue)
+                    User user = new User();
+                    if (model.UserId.HasValue)
                     {
-                        customer = context.Customer.FirstOrDefault(x => x.CustomerId == model.CustomerId);
-                        customer.Update_Date = DateTime.Now;
+                        user = context.User.FirstOrDefault(x => x.UserId == model.UserId);
+                        user.Update_date = DateTime.Now;
                     }
 
-                    customer.Names = model.Names;
-                    customer.Last_Names = model.LastNames;
-                    customer.Sex = model.Sex;
-                    customer.Identity_Document = model.Identity_Document;
-                    customer.Email = model.Email;
-                    customer.Birthdate = model.Birthdate;
-                    customer.DistrictId = model.DistrictId;
-                    customer.Phone = model.Phone;
+                    user.Names = model.Names;
+                    user.Last_Names = model.Last_Names;
+                    user.Identity_Document = model.Identity_Document;
+                    user.Email = model.Email;
+                    user.Birthdate = model.Birthdate;
+                    user.DistrictId = model.DistrictId;
+                    user.Credential = model.Credential;
+                    user.Password = model.Password;
 
                     context.SaveChanges();
                     ts.Complete();
