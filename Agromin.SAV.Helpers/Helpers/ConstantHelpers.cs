@@ -15,6 +15,10 @@ namespace Agromin.SAV.Helpers.Helpers
             public const string INACTIVO = "INA";
             public const string ENTRADA = "ENT";
             public const string SALIDA = "SAL";
+            public const string PREVENTA = "PRE";
+            public const string NOENTREGADO = "NOE";
+            public const string CANCELADO = "CAN";
+            public const string ENTREGADO = "ETG";
 
             public static string GetNameEstado(string Estado)
             {
@@ -28,6 +32,14 @@ namespace Agromin.SAV.Helpers.Helpers
                         return "ENTRADA";
                     case SALIDA:
                         return "SALIDA";
+                    case PREVENTA:
+                        return "PREVENTA";
+                    case NOENTREGADO:
+                        return "NOENTREGADO";
+                    case CANCELADO:
+                        return "CANCELADO";
+                    case ENTREGADO:
+                        return "ENTREGADO";
                 }
 
                 return string.Empty;
@@ -44,6 +56,14 @@ namespace Agromin.SAV.Helpers.Helpers
                         return "<label class='badge badge-primary'>ENTRADA</label>";
                     case SALIDA:
                         return "<label class='badge badge-primary'>SALIDA</label>";
+                    case PREVENTA:
+                        return "<label class='badge badge-primary'>PREVENTA</label>";
+                    case NOENTREGADO:
+                        return "<label class='badge badge-primary'>NO ENTREGADO</label>";
+                    case CANCELADO:
+                        return "<label class='badge badge-primary'>CANCELADO</label>";
+                    case ENTREGADO:
+                        return "<label class='badge badge-primary'>ENTREGADO</label>";
                 }
                 return string.Empty;
             }
