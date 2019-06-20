@@ -66,7 +66,7 @@ namespace Agromin.SAV.Api.Controllers
 
         [HttpGet]
         [Route("departments")]
-        public IHttpActionResult ListDepartmens()
+        public IHttpActionResult ListDepartments()
         {
             try
             {
@@ -75,6 +75,88 @@ namespace Agromin.SAV.Api.Controllers
                     response.Data = context.Department.Select(x => new
                     {
                         DepartmentId = x.DepartmentId,
+                        Name = x.Name
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
+        [Route("products")]
+        public IHttpActionResult ListProducts()
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.Product.Where(x=>x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    {
+                        ProductId = x.ProductId,
+                        Name = x.Name
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
+        [Route("productbrands")]
+        public IHttpActionResult ListProductbrands()
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.ProductBrand.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    {
+                        ProductBrandId = x.ProductBrandId,
+                        NameProduct = x.Product.Name,
+                        ProductId = x.ProductId,
+                        NameBrand = x.Brand.Name,
+                        BrandId = x.BrandId,
+                        Status = x.Status
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
+        [Route("brands")]
+        public IHttpActionResult ListBrands()
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.Brand.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    {
+                        BrandId = x.BrandId,
                         Name = x.Name
                     }).ToList();
 
