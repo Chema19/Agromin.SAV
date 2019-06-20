@@ -15,12 +15,40 @@ namespace Agromin.SAV.Api.Controllers
     public class EntryExitProductApiController : BaseApiController
     {
         [HttpGet]
-        [Route("entryexitproducs")]
-        public IHttpActionResult ListEntryExitProduct() {
+        [Route("stockproducs")]
+        public IHttpActionResult ListStockProduct()
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+
+                    response.Data = context.StockProduct.Select(x => new {
+                        StockProductId = x.StockProductId,
+                        Amount = x.Amount,
+                        Status = x.Status,
+                        ProductBrandId = x.ProductBrandId,
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
+        [Route("entryexitproducs/{productbrandid}")]
+        public IHttpActionResult ListEntryExitProduct(Int32? ProductBrandId) {
             try {
                 using (var ts = new TransactionScope()) {
 
-                    response.Data = context.EntryExitProduct.Select(x => new {
+                    response.Data = context.EntryExitProduct.Where(x=>x.ProductBrandId == ProductBrandId).Select(x => new {
                         EntryExitProductId = x.EntryExitProductId,
                         Amount = x.Amount,
                         Creation_Date = x.Creation_Date,
