@@ -13,7 +13,8 @@ namespace Agromin.SAV.Helpers.Helpers
         {
             public const string ACTIVO = "ACT";
             public const string INACTIVO = "INA";
-
+            public const string ENTRADA = "ENT";
+            public const string SALIDA = "SAL";
 
             public static string GetNameEstado(string Estado)
             {
@@ -23,6 +24,10 @@ namespace Agromin.SAV.Helpers.Helpers
                         return "ACTIVO";
                     case INACTIVO:
                         return "INACTIVO";
+                    case ENTRADA:
+                        return "ENTRADA";
+                    case SALIDA:
+                        return "SALIDA";
                 }
 
                 return string.Empty;
@@ -35,6 +40,10 @@ namespace Agromin.SAV.Helpers.Helpers
                         return "<label class='badge badge-success'>ACTIVO</label>";
                     case INACTIVO:
                         return "<label class='badge badge-danger'>INACTIVO</label>";
+                    case ENTRADA:
+                        return "<label class='badge badge-primary'>ENTRADA</label>";
+                    case SALIDA:
+                        return "<label class='badge badge-primary'>SALIDA</label>";
                 }
                 return string.Empty;
             }

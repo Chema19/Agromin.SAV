@@ -139,7 +139,7 @@ namespace Agromin.SAV.Api.Controllers
                     }
 
                     customer.Names = model.Names;
-                    customer.Last_Names = model.LastNames;
+                    customer.Last_Names = model.Last_Names;
                     customer.Sex = model.Sex;
                     customer.Identity_Document = model.Identity_Document;
                     customer.Email = model.Email;
