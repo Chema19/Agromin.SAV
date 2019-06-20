@@ -78,5 +78,39 @@ namespace Agromin.SAV.Api.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpPut]
+        [Route("locals")]
+        public IHttpActionResult EditLocal(LocalEntity model)
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+
+                    Local local = new Local();
+                    if (model.LocalId.HasValue)
+                    {
+                        local = context.Local.FirstOrDefault(x => x.LocalId == model.LocalId);
+                    }
+
+                    local.Name = model.Name;
+                    local.Address = model.Address;
+                    local.DistrictId = model.DistrictId;
+                    local.Phone = model.Phone;
+
+                    context.SaveChanges();
+                    ts.Complete();
+                }
+                response.Data = "Local added";
+                response.Error = false;
+                response.Message = "Success";
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
     }
 }
