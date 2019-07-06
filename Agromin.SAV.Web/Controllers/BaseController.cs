@@ -9,6 +9,7 @@ namespace Agromin.SAV.Web.Controllers
 {
     public class BaseController : HelperController
     {
+        private CargarDatosContext cargarDatosContext;
         // GET: Base
         public ActionResult Index()
         {
@@ -19,5 +20,20 @@ namespace Agromin.SAV.Web.Controllers
         {
             throw new NotImplementedException();
         }
+
+        public CargarDatosContext CargarDatosContext()
+        {
+            if (cargarDatosContext == null)
+            {
+                cargarDatosContext = new CargarDatosContext { session = Session };
+            }
+
+            return cargarDatosContext;
+        }
+
+    }
+    public class CargarDatosContext
+    {
+        public HttpSessionStateBase session { get; set; }
     }
 }

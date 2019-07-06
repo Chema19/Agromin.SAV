@@ -12,6 +12,7 @@ namespace Agromin.SAV.Api.Controllers
     [RoutePrefix("SAV")]
     public class GeneralApiController : BaseApiController
     {
+        
         [HttpGet]
         [Route("districts/{provinceid}")]
         public IHttpActionResult ListDistricts(Int32? ProvinceId)
@@ -127,9 +128,8 @@ namespace Agromin.SAV.Api.Controllers
                     response.Data = context.ProductBrand.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
                     {
                         ProductBrandId = x.ProductBrandId,
-                        NameProduct = x.Product.Name,
+                        NameProductBrand = x.Product.Name + " - " + x.Brand.Name,
                         ProductId = x.ProductId,
-                        NameBrand = x.Brand.Name,
                         BrandId = x.BrandId,
                         Status = x.Status
                     }).ToList();

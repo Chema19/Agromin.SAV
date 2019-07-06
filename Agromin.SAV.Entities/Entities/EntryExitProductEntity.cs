@@ -14,6 +14,9 @@ namespace Agromin.SAV.Entities.Entities
         public String StatusType { set; get; }
         public Int32? UserId { set; get; }
         public Int32? ProductBrandId { set; get; }
+        public String NameBrand { set; get; }
+        public String NameProduct { set; get; }
+        public String NameUser { set; get; }
         public Int32? SaleId { set; get; }
     }
 }

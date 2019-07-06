@@ -28,6 +28,8 @@ namespace Agromin.SAV.Api.Controllers
                         Amount = x.Amount,
                         Status = x.Status,
                         ProductBrandId = x.ProductBrandId,
+                        NameBrand = x.ProductBrand.Brand.Name,
+                        NameProduct = x.ProductBrand.Product.Name,
                     }).ToList();
 
                     response.Error = false;
@@ -43,17 +45,20 @@ namespace Agromin.SAV.Api.Controllers
         }
 
         [HttpGet]
-        [Route("entryexitproducs/{productbrandid}")]
+        [Route("entryexitproducs/{ProductBrandId}")]
         public IHttpActionResult ListEntryExitProduct(Int32? ProductBrandId) {
             try {
                 using (var ts = new TransactionScope()) {
 
-                    response.Data = context.EntryExitProduct.Where(x=>x.ProductBrandId == ProductBrandId).Select(x => new {
+                    response.Data = context.EntryExitProduct.Where(x => x.ProductBrandId == ProductBrandId).Select(x => new {
                         EntryExitProductId = x.EntryExitProductId,
                         Amount = x.Amount,
                         Creation_Date = x.Creation_Date,
                         StatusType = x.StatusType,
                         UserId = x.UserId,
+                        NameUser = x.User.Names,
+                        NameProduct = x.ProductBrand.Product.Name,
+                        NameBrand = x.ProductBrand.Brand.Name,
                         ProductBrandId = x.ProductBrandId,
                         SaleId = x.SaleId
                     }).ToList();

@@ -49,7 +49,7 @@ namespace Agromin.SAV.Api.Controllers
                         var user = context.User.FirstOrDefault(x => x.Credential == model.Credential && x.Password == model.Password);
                         if (user != null)
                         {
-                            response.Data = "successfull login";
+                            response.Data = context.User.Where(x => x.Credential == model.Credential && x.Password == model.Password).Select(x => new UserEntity{ UserId = x.UserId, Names = x.Names, Last_Names = x.Last_Names, LocalId = x.LocalId });
                             response.Error = false;
                             response.Message = "Success";
                             return Ok(response);

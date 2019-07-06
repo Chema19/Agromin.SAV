@@ -85,11 +85,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\LoginEntity.cs" />
+    <Compile Include="Entities\ProductBrandEntity.cs" />
+    <Compile Include="Entities\ProductEntity.cs" />
+    <Compile Include="Entities\ResultRequestEntity.cs" />
     <Compile Include="Entities\SaleDetailEntity.cs" />
     <Compile Include="Entities\CustomerEntity.cs" />
     <Compile Include="Entities\EntryExitProductEntity.cs" />
     <Compile Include="Entities\LocalEntity.cs" />
     <Compile Include="Entities\SaleEntity.cs" />
+    <Compile Include="Entities\StockProductEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,13 +1,111 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Newtonsoft.Json;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Agromin.SAV.Helpers.Helpers
 {
     public static class ConstantHelpers
     {
+
+        public static string AddKey(String name)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get(name);
+        }
+
+        public static async Task<ResultRequestEntity> GetUrlAsync(String BaseUrl, String RestUrl) {
+            try
+            {
+                String resultContent = String.Empty;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage response = await client.GetAsync(RestUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        resultContent = response.Content.ReadAsStringAsync().Result;
+                    }
+                }
+                return JsonConvert.DeserializeObject<ResultRequestEntity>(resultContent);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static async Task<ResultRequestEntity> PostUrlAsync(String BaseUrl, String RestUrl, Object Content)
+        {
+            try
+            {
+                String resultContent = String.Empty;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage response = client.PostAsJsonAsync(RestUrl, Content).Result;
+                    resultContent = response.Content.ReadAsStringAsync().Result;
+                }
+                return JsonConvert.DeserializeObject<ResultRequestEntity>(resultContent);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static async Task<ResultRequestEntity> PutUrlAsync(String BaseUrl, String RestUrl)
+        {
+            try
+            {
+                String resultContent = String.Empty;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage response = await client.GetAsync(RestUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        resultContent = response.Content.ReadAsStringAsync().Result;
+                    }
+                }
+                return JsonConvert.DeserializeObject<ResultRequestEntity>(resultContent);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static async Task<ResultRequestEntity> DeleteUrlAsync(String BaseUrl, String RestUrl)
+        {
+            try
+            {
+                String resultContent = String.Empty;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage response = await client.GetAsync(RestUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        resultContent = response.Content.ReadAsStringAsync().Result;
+                    }
+                }
+                return JsonConvert.DeserializeObject<ResultRequestEntity>(resultContent);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
         public static class ESTADO
         {
@@ -16,7 +114,7 @@ namespace Agromin.SAV.Helpers.Helpers
             public const string ENTRADA = "ENT";
             public const string SALIDA = "SAL";
             public const string PREVENTA = "PRE";
-            public const string NOENTREGADO = "NOE";
+            public const string NOENTREGADO = "NEN";
             public const string CANCELADO = "CAN";
             public const string ENTREGADO = "ETG";
 
@@ -67,6 +165,13 @@ namespace Agromin.SAV.Helpers.Helpers
                 }
                 return string.Empty;
             }
+        }
+
+        public class ResultRequestEntity
+        {
+            public Object Data { set; get; }
+            public Boolean Error { set; get; }
+            public String Message { set; get; }
         }
     }
 }

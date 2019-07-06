@@ -25,7 +25,7 @@ namespace Agromin.SAV.Api.Controllers
                     response.Data = context.Local.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
                     {
                         LocalId = x.LocalId,
-                        Names = x.Name,
+                        Name = x.Name,
                         Status = x.Status,
                         DistrictId = x.DistrictId,
                         Phone = x.Phone,
@@ -43,6 +43,37 @@ namespace Agromin.SAV.Api.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpGet]
+        [Route("locals/{localid}")]
+        public IHttpActionResult ListLocals(Int32? LocalId)
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.Local.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO && x.LocalId == LocalId).Select(x => new
+                    {
+                        LocalId = x.LocalId,
+                        Name = x.Name,
+                        Status = x.Status,
+                        DistrictId = x.DistrictId,
+                        Phone = x.Phone,
+                        Address = x.Address
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
 
         [HttpPost]
         [Route("locals")]

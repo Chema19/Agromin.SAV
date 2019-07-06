@@ -53,6 +53,44 @@ namespace Agromin.SAV.Api.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("users/{userid}")]
+        public IHttpActionResult ViewUsers(Int32? UserId)
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.User.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO && x.UserId == UserId).Select(x => new
+                    {
+                        UserId = x.UserId,
+                        Names = x.Names,
+                        Credential = x.Credential,
+                        Password = x.Password,
+                        Last_Names = x.Last_Names,
+                        Sex = x.Sex,
+                        Identity_Document = x.Identity_Document,
+                        Email = x.Email,
+                        Birthdate = x.Birthdate,
+                        Creation_date = x.Creation_date,
+                        Update_date = x.Update_date,
+                        Status = x.Status,
+                        DistrictId = x.DistrictId,
+                        Phone = x.Phone
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
         [HttpPost]
         [Route("users")]
         public IHttpActionResult AddUser(UserEntity model)

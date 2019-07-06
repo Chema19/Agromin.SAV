@@ -27,9 +27,11 @@ namespace Agromin.SAV.Api.Controllers
                         SaleId = x.SaleId,
                         General_Price = x.General_Price,
                         CustomerId = x.CustomerId,
+                        FullName = x.Customer.Names + " " + x.Customer.Last_Names,
                         Creation_Date = x.Creation_Date,
                         UserId = x.UserId,
                         LocalId = x.LocalId,
+                        LocalName = x.Local.Name,
                         Update_Date = x.Update_Date,
                         CodeVoucher = x.CodeVoucher,
                         StatusPayment = x.StatusPayment,
@@ -75,7 +77,7 @@ namespace Agromin.SAV.Api.Controllers
                     context.SaveChanges();
 
                     Decimal? totalGeneral = 0;
-                    foreach (var item in model.ListSaleDetail)
+                    foreach (var item in model.LstSaleDetail)
                     {
 
                         SaleDetail saleDetail = new SaleDetail();
@@ -149,7 +151,7 @@ namespace Agromin.SAV.Api.Controllers
                     context.SaveChanges();
 
                     Decimal? totalGeneral = 0;
-                    foreach (var item in model.ListSaleDetail)
+                    foreach (var item in model.LstSaleDetail)
                     {
 
                         SaleDetail saleDetail = new SaleDetail();
