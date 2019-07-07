@@ -73,15 +73,9 @@
         <script src="@Url.Content("~/Scripts/Pages/Helpers/JsInputValidationHelpers.js")"></script>
 
 
-
-        <script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
         @Html.Content("/Shared/global.min.js", true)
         @RenderSection("scripts", required: false)
-
+        <script src="@Url.Content("~/Scripts/shared/GlobalHelps.js")"></script>
         <script>
         </script>
 

@@ -58,7 +58,7 @@ namespace Agromin.SAV.Helpers.Helpers
             }
         }
 
-        public static async Task<ResultRequestEntity> PutUrlAsync(String BaseUrl, String RestUrl)
+        public static async Task<ResultRequestEntity> PutUrlAsync(String BaseUrl, String RestUrl, Object Data)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Agromin.SAV.Helpers.Helpers
                     client.BaseAddress = new Uri(BaseUrl);
                     client.DefaultRequestHeaders.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage response = await client.GetAsync(RestUrl);
+                    HttpResponseMessage response = client.PutAsJsonAsync(RestUrl, Data).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         resultContent = response.Content.ReadAsStringAsync().Result;
@@ -92,7 +92,7 @@ namespace Agromin.SAV.Helpers.Helpers
                     client.BaseAddress = new Uri(BaseUrl);
                     client.DefaultRequestHeaders.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage response = await client.GetAsync(RestUrl);
+                    HttpResponseMessage response = client.DeleteAsync(RestUrl).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         resultContent = response.Content.ReadAsStringAsync().Result;

@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Agromin.SAV.Entities.Entities
 {
-    public class ProductEntity
+    public class BrandEntity
     {
-        public Int32? ProductId { set; get; }
+        public Int32? BrandId { set; get; }
         public String Name { set; get; }
         public String Status { set; get; }
-        public DateTime? Creation_Date { set; get; }
     }
 }

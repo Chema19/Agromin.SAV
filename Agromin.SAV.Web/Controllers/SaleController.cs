@@ -66,5 +66,48 @@ namespace Agromin.SAV.Web.Controllers
             }
         }
 
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> ConfirmPaymentSale(Int32? Id)
+        {
+            var validacion = false;
+            try
+            {
+                var obj = new Object();
+                var postResult = ConstantHelpers.PutUrlAsync(Baseurl, "SAV/confirmpayment/"+Id.ToString(), obj).Result;
+                if (postResult.Message.Equals("Success"))
+                {
+                    validacion = true;
+                    return Json(new { validacion });
+                }
+                return Json(new { });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { });
+            }
+        }
+
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> ConfirmDeliverySale(Int32? Id)
+        {
+            var validacion = false;
+            try
+            {
+                var obj = new Object();
+                var postResult = ConstantHelpers.PutUrlAsync(Baseurl, "SAV/confirmdelivery/" + Id.ToString(), obj).Result;
+                if (postResult.Message.Equals("Success"))
+                {
+                    validacion = true;
+                    return Json(new { validacion });
+                }
+                return Json(new { });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { });
+            }
+        }
+
+
     }
 }

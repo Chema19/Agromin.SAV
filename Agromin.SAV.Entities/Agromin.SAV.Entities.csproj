@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BrandEntity.cs" />
     <Compile Include="Entities\LoginEntity.cs" />
     <Compile Include="Entities\ProductBrandEntity.cs" />
     <Compile Include="Entities\ProductEntity.cs" />

@@ -17,13 +17,6 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card-box">
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-box">
             <h4 class="header-title">Venta</h4>
             <p class="sub-header">
                 Lista de ventas Sagromin.
@@ -109,7 +102,7 @@
             }).then((result) => {
                 if (result.value) {
                     var Sale_id = $(this)[0].attributes[1].nodeValue;
-                    ajaxGeneralPostById('@Url.Action("_ConfirmPaymentSale", "Sale")', Sale_id, 'Marca');
+                    ajaxGeneralPostById('@Url.Action("ConfirmPaymentSale", "Sale")', Sale_id, 'Marca');
                 }
             })
         });
@@ -125,7 +118,7 @@
             }).then((result) => {
                 if (result.value) {
                     var Sale_id = $(this)[0].attributes[1].nodeValue;
-                    ajaxGeneralPostById('@Url.Action("_ConfirmDeliverySale", "Sale")', Sale_id, 'Marca');
+                    ajaxGeneralPostById('@Url.Action("ConfirmDeliverySale", "Sale")', Sale_id, 'Marca');
                 }
             })
         });

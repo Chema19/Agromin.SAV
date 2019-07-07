@@ -91,31 +91,31 @@ namespace Agromin.SAV.Api.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("products")]
-        public IHttpActionResult ListProducts()
-        {
-            try
-            {
-                using (var ts = new TransactionScope())
-                {
-                    response.Data = context.Product.Where(x=>x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
-                    {
-                        ProductId = x.ProductId,
-                        Name = x.Name
-                    }).ToList();
+        //[HttpGet]
+        //[Route("products")]
+        //public IHttpActionResult ListProducts()
+        //{
+        //    try
+        //    {
+        //        using (var ts = new TransactionScope())
+        //        {
+        //            response.Data = context.Product.Where(x=>x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+        //            {
+        //                ProductId = x.ProductId,
+        //                Name = x.Name
+        //            }).ToList();
 
-                    response.Error = false;
-                    response.Message = "Success";
-                    ts.Complete();
-                }
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized();
-            }
-        }
+        //            response.Error = false;
+        //            response.Message = "Success";
+        //            ts.Complete();
+        //        }
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Unauthorized();
+        //    }
+        //}
 
         [HttpGet]
         [Route("productbrands")]
@@ -146,30 +146,30 @@ namespace Agromin.SAV.Api.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("brands")]
-        public IHttpActionResult ListBrands()
-        {
-            try
-            {
-                using (var ts = new TransactionScope())
-                {
-                    response.Data = context.Brand.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
-                    {
-                        BrandId = x.BrandId,
-                        Name = x.Name
-                    }).ToList();
+        //[HttpGet]
+        //[Route("brands")]
+        //public IHttpActionResult ListBrands()
+        //{
+        //    try
+        //    {
+        //        using (var ts = new TransactionScope())
+        //        {
+        //            response.Data = context.Brand.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+        //            {
+        //                BrandId = x.BrandId,
+        //                Name = x.Name
+        //            }).ToList();
 
-                    response.Error = false;
-                    response.Message = "Success";
-                    ts.Complete();
-                }
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized();
-            }
-        }
+        //            response.Error = false;
+        //            response.Message = "Success";
+        //            ts.Complete();
+        //        }
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Unauthorized();
+        //    }
+        //}
     }
 }

@@ -193,8 +193,8 @@ namespace Agromin.SAV.Api.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("confirmpayment/{saleid}")]
+        [HttpPut]
+        [Route("confirmpayment/{SaleId}")]
         public IHttpActionResult ConfirmPaymentSale(Int32? SaleId)
         {
             try
@@ -220,8 +220,8 @@ namespace Agromin.SAV.Api.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("confirmdelivery/{salid}")]
+        [HttpPut]
+        [Route("confirmdelivery/{SaleId}")]
         public IHttpActionResult ConfirmDeliverySale(Int32? SaleId)
         {
             try

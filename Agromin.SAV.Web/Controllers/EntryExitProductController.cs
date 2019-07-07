@@ -1,4 +1,5 @@
-﻿using Agromin.SAV.Web.ViewModel.EntryExitProduct;
+﻿using Agromin.SAV.Helpers.Helpers;
+using Agromin.SAV.Web.ViewModel.EntryExitProduct;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Agromin.SAV.Web.Controllers
 {
     public class EntryExitProductController : BaseController
     {
+        String Baseurl = ConstantHelpers.AddKey("urlbase");
         [HttpGet]
         public async System.Threading.Tasks.Task<ActionResult> ListStockProduct()
         {
@@ -24,22 +26,32 @@ namespace Agromin.SAV.Web.Controllers
             await vm.Fill(CargarDatosContext(), ProductBrandId);
             return View(vm);
         }
-        //public ActionResult _AddEditEntryExitProduct()
-        //{
-        //    var vm = new AddEditEntryExitProductViewModel();
-        //    vm.Fill(CargarDatosContext());
-        //    return View(vm);
-        //}
-        //[HttpPost]
-        //public ActionResult _AddEditEntryExitProduct(AddEditEntryExitProductViewModel model)
-        //{
-        //    try {
-        //        return RedirectToAction("ListStockProduct", "EntryExitProduct");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return View(model);
-        //    }
-        //}
+        [HttpGet]
+        public async System.Threading.Tasks.Task<ActionResult> AddEditEntryExitProduct()
+        {
+            var vm = new AddEditEntryExitProductViewModel();
+            await vm.FillAdd(CargarDatosContext());
+            return View(vm);
+        }
+        [HttpPost]
+        public async System.Threading.Tasks.Task<ActionResult> AddEditEntryExitProduct(AddEditEntryExitProductViewModel model)
+        {
+            try
+            {
+                model.UserId = Session.GetUserId();
+                var postResult = ConstantHelpers.PostUrlAsync(Baseurl, "SAV/entryexitproducts", model).Result;
+                if (postResult.Message.Equals("Success"))
+                {
+                    return RedirectToAction("ListStockProduct", "EntryExitProduct");
+                }
+                await model.FillAdd(CargarDatosContext());
+                return View(model);
+                
+            }
+            catch (Exception e)
+            {
+                return View(model);
+            }
+        }
     }
 }
