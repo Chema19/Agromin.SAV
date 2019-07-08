@@ -141,6 +141,7 @@
     <Compile Include="Controllers\EntryExitProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductBrandController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -152,6 +153,8 @@
     <Compile Include="ViewModel\EntryExitProduct\AddEditEntryExitProductViewModel.cs" />
     <Compile Include="ViewModel\EntryExitProduct\ListEntryExitProductViewModel.cs" />
     <Compile Include="ViewModel\EntryExitProduct\ListStockProductViewModel.cs" />
+    <Compile Include="ViewModel\ProductBrand\AddEditProductBrandViewModel.cs" />
+    <Compile Include="ViewModel\ProductBrand\ListProductBrandViewModel.cs" />
     <Compile Include="ViewModel\Product\AddEditProductViewModel.cs" />
     <Compile Include="ViewModel\Product\ListProductViewModel.cs" />
     <Compile Include="ViewModel\Sale\AddEditSaleViewModel.cs" />
@@ -903,6 +906,8 @@
     <Content Include="Views\Product\ListProduct.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\Brand\AddBrand.cshtml" />
+    <Content Include="Views\ProductBrand\ListProductBrand.cshtml" />
+    <Content Include="Views\ProductBrand\AddProductBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

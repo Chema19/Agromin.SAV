@@ -117,34 +117,34 @@ namespace Agromin.SAV.Api.Controllers
         //    }
         //}
 
-        [HttpGet]
-        [Route("productbrands")]
-        public IHttpActionResult ListProductbrands()
-        {
-            try
-            {
-                using (var ts = new TransactionScope())
-                {
-                    response.Data = context.ProductBrand.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
-                    {
-                        ProductBrandId = x.ProductBrandId,
-                        NameProductBrand = x.Product.Name + " - " + x.Brand.Name,
-                        ProductId = x.ProductId,
-                        BrandId = x.BrandId,
-                        Status = x.Status
-                    }).ToList();
+        //[HttpGet]
+        //[Route("productbrands")]
+        //public IHttpActionResult ListProductbrands()
+        //{
+        //    try
+        //    {
+        //        using (var ts = new TransactionScope())
+        //        {
+        //            response.Data = context.ProductBrand.Where(x => x.Status == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+        //            {
+        //                ProductBrandId = x.ProductBrandId,
+        //                NameProductBrand = x.Product.Name + " - " + x.Brand.Name,
+        //                ProductId = x.ProductId,
+        //                BrandId = x.BrandId,
+        //                Status = x.Status
+        //            }).ToList();
 
-                    response.Error = false;
-                    response.Message = "Success";
-                    ts.Complete();
-                }
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized();
-            }
-        }
+        //            response.Error = false;
+        //            response.Message = "Success";
+        //            ts.Complete();
+        //        }
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Unauthorized();
+        //    }
+        //}
 
         //[HttpGet]
         //[Route("brands")]

@@ -186,6 +186,7 @@
     <Compile Include="Controllers\LocalApiController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
     <Compile Include="Controllers\ProductApiController.cs" />
+    <Compile Include="Controllers\ProductBrandApiController.cs" />
     <Compile Include="Controllers\SaleApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Global.asax.cs">

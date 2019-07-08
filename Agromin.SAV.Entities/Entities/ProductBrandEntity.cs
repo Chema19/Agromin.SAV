@@ -10,6 +10,8 @@ namespace Agromin.SAV.Entities.Entities
     {
         public Int32? ProductBrandId { set; get; }
         public Int32? ProductId { set; get; }
+        public String NameProduct { set; get; }
+        public String NameBrand { set; get; }
         public String NameProductBrand { set; get; }
         public Int32? BrandId { set; get; }
         public String Status { set; get; }
